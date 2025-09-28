@@ -74,12 +74,7 @@ const loginuser=asynchandler(async(req,res)=>
 // @access private
 const getme=asynchandler(async(req,res)=>
 {
-   const {_id,email,name}=await User.findById(req.user.id)
-   res.status(200).json({
-    id:_id,
-    name:name,
-    email:email
-   })
+   res.status(200).json(req.user)
 })
 
 const generateToken=(id)=>{

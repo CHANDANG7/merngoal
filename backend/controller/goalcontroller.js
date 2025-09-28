@@ -39,13 +39,12 @@ const updategoals= asynchandler(async(req,res)=>
         res.status(400)
         throw new Error("ID not found")
     }
-    const user=await User.findById(req.user.id)
-    if(!user)
+    if(!req.user)
     {
         res.status(401)
         throw new Error('User not found')
     }
-    if(goal.user.id.toString()!==user.id)
+    if(goal.user.id.toString()!==req.user.id)
     {
         res.status(401)
         throw new Error('User not Authorized')
